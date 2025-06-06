@@ -11,7 +11,7 @@ employee information, calculates the average salary, and provides insights into 
 - Identify the highest and lowest salaries
 - Generate a report (Log) of the analysis based on requirements
 
-## Requirements
+## Problem Statement
 
 BIG COMPANY is employing a lot of employees. Company would like to analyze its organizational structure and identify
 potential improvements. Board wants to make sure that every manager earns at least 20% more than the average salary of
