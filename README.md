@@ -31,9 +31,12 @@ Find the following:
 
 ## How to Run
 
-1. Clone the repository:
+1. Clone the repository and run maven goal to package:
    ```bash
    git clone <REPOSITORY_URL>
+   ```
+   ```bash
+   mvn package
    ```
 
 2. Navigate to the project target directory:
@@ -49,7 +52,8 @@ Find the following:
    ```bash
    java -jar .\employee-analyzer-1.0-SNAPSHOT.jar <path_to_your_input_file>
    ```
-  
+
+  Note: Jar file generated is also uploaded to root directory.
 
 ## Input Data
 
