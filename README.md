@@ -66,7 +66,7 @@ The CSV file should have the following columns:
 - firstname: First name of the employee
 - lastname: Last name of the employee
 - salary: Salary of the employee
-- manager_id: ID of the employee's manager (null if the employee is a CEO)
+- manager_id: ID of the employee's manager (empty if the employee is a CEO)
 
 ## Output
 
