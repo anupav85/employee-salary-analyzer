@@ -1,0 +1,16 @@
+Id,firstName,lastName,salary,managerId
+1,Alice,Smith,250000,
+2,Bob,Jones,10000,1
+3,Carol,White,150000,1
+4,David,Brown,60000,2
+5,Eve,Green,65000,2
+6,Frank,Black,70000,2
+7,Grace,Wilson,40000,3
+8,Hank,Moore,35000,3
+9,Ivy,Taylor,30000,3
+10,Jack,Anderson,25000,7
+11,Kate,Thomas,20000,10
+12,Liam,Jackson,15000,11
+13,Mia,Lee,10000,12
+14,Nina,Walker,8000,13
+15,Oscar,Hall,6000,14
