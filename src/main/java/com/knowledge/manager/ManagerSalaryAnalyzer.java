@@ -80,6 +80,16 @@ public class ManagerSalaryAnalyzer {
         return map;
     }
 
+    /**
+     * Analyzes the salary of managers in relation to their subordinates.
+     * Detects issues such as multiple managers, cycles, multi-CEO, single reportee to CEO,
+     * and provides salary analysis for each manager.
+     *
+     * @param managerToReports Map of manager IDs to their direct reports.
+     * @param idToEmployee Map of employee IDs to Employee objects.
+     * @return List of analysis results as strings.
+     */
+
     public static List<String> analyzeManagerSalary(
             Map<Integer, List<Employee>> managerToReports,
             Map<Integer, Employee> idToEmployee) {
@@ -138,11 +148,11 @@ public class ManagerSalaryAnalyzer {
             if (managerSalary < minShouldEarn) {
                 double diff = minShouldEarn - managerSalary;
                 results.add("ManagerId: " + managerId +
-                        " (" + manager.firstName + " " + manager.lastName + ")" +
-                        " is UNDERPAID by " + Math.round(diff) +
-                        " (earns " + Math.round(managerSalary) +
-                        ", should earn at least " + Math.round(minShouldEarn) + ")" +
-                        ", average subordinate salary: " + Math.round(avgSubordinateSalary)
+                                " (" + manager.firstName + " " + manager.lastName + ")" +
+                                " is UNDERPAID by " + Math.round(diff) +
+                                " (earns " + Math.round(managerSalary) +
+                                ", should earn at least " + Math.round(minShouldEarn) + ")" +
+                                ", average subordinate salary: " + Math.round(avgSubordinateSalary)
 //                        + ", lowest subordinate: " + Math.round(minSalary) + " (" + minId + ")" +
 //                        ", highest subordinate: " + Math.round(maxSalary) + " (" + maxId + ")" +
 //                        ", difference: " + Math.round(salaryDiff) +
@@ -151,16 +161,16 @@ public class ManagerSalaryAnalyzer {
             } else if (managerSalary > maxShouldEarn) {
                 double diff = managerSalary - maxShouldEarn;
                 results.add("ManagerId: " + managerId +
-                        " (" + manager.firstName + " " + manager.lastName + ")" +
-                        " is OVERPAID by " + Math.round(diff) +
-                        " (earns " + Math.round(managerSalary) +
-                        ", should earn no more than " + Math.round(maxShouldEarn) + ")" +
-                        ", average subordinate salary: " + Math.round(avgSubordinateSalary)
+                                " (" + manager.firstName + " " + manager.lastName + ")" +
+                                " is OVERPAID by " + Math.round(diff) +
+                                " (earns " + Math.round(managerSalary) +
+                                ", should earn no more than " + Math.round(maxShouldEarn) + ")" +
+                                ", average subordinate salary: " + Math.round(avgSubordinateSalary)
 //                        + ", lowest subordinate: " + Math.round(minSalary) + " (" + minId + ")" +
 //                        ", highest subordinate: " + Math.round(maxSalary) + " (" + maxId + ")" +
 //                        ", difference: " + Math.round(salaryDiff) +
 //                        ", percent difference: " + Math.round(percentDiff) + "%"
-              );
+                );
             }
         }
         results.forEach(System.out::println);
@@ -178,9 +188,9 @@ public class ManagerSalaryAnalyzer {
 
     private static boolean hasMultiCEO(Map<Integer, Employee> idToEmployee, List<String> results) {
         long ceoCount = idToEmployee.values().stream().filter(e -> e.managerId == null).count();
-            if (ceoCount>1) {
-                results.add("WARNING: More than one CEO detected in the company.");
-            }
+        if (ceoCount > 1) {
+            results.add("WARNING: More than one CEO detected in the company.");
+        }
         return !results.isEmpty();
     }
 

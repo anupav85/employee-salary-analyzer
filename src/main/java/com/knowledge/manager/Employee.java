@@ -1,18 +1,17 @@
 package com.knowledge.manager;
 
-class Employee {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@ToString
+public class Employee {
     int id;
     String firstName;
     String lastName;
     double salary;
     Integer managerId;
-
-    public Employee(int id, String firstName, String lastName, double salary, Integer managerId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
-        this.managerId = managerId;
-    }
 }
 

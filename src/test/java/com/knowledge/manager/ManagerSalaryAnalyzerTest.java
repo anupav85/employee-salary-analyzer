@@ -33,6 +33,24 @@ class ManagerSalaryAnalyzerTest {
     }
 
     @Test
+    void testReadEmployeesFromCsv() {
+        // Arrange: test CSV file should be placed in src/test/resources
+        String resourceName = "mock_employees.csv";
+
+        // Act
+        List<Employee> employees = ManagerSalaryAnalyzer.readEmployeesFromCsv(resourceName);
+
+        // Assert
+        assertNotNull(employees, "Employee list should not be null");
+        assertEquals(3, employees.size(), "Should read 3 employees from CSV");
+
+        // Example: Check first employee's fields
+        Employee expected = new Employee(1, "John", "Doe", 250000.0, null);
+        assertEquals(expected, employees.get(0), "First employee should match expected values");
+
+    }
+
+    @Test
     void testAnalyzeManagerSalary_returnsExpectedResults() {
         List<Employee> employees = buildSampleEmployees();
         Map<Integer, Employee> idToEmployee = ManagerSalaryAnalyzer.buildIdToEmployee(employees);
