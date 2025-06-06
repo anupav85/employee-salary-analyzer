@@ -83,12 +83,8 @@ The application will output the following:
 - The manager_id for the CEO is null/empty.
 - The application does not enforce a single CEO, results will include messages with WARNING if such structures are
   detected.
-- The application does not handle circular reporting structures, results will include messages with WARNING if such
-  structures
-  are detected.
-- The application does not handle employees without managers, results will include messages with WARNING if such
-  structures are
-  detected.
-- The application does not handle employees with multiple managers, results will include messages with WARNING if such
+- Crcular reporting structures, results will include messages with WARNING if such structures are detected.
+- Employees without managers, results will include messages with WARNING if such structures are detected.
+- Employees with multiple managers, results will include messages with WARNING if such
   structures are detected.
 
