@@ -126,22 +126,17 @@ public class ManagerSalaryAnalyzer {
 
             double managerSalary = manager.salary;
             double sum = 0.0;
-            int minId = -1, maxId = -1;
             double minSalary = Double.MAX_VALUE, maxSalary = Double.MIN_VALUE;
             for (Employee report : reports) {
                 sum += report.salary;
                 if (report.salary < minSalary) {
                     minSalary = report.salary;
-                    minId = report.id;
                 }
                 if (report.salary > maxSalary) {
                     maxSalary = report.salary;
-                    maxId = report.id;
                 }
             }
             double avgSubordinateSalary = sum / reports.size();
-            double percentDiff = ((managerSalary - avgSubordinateSalary) / avgSubordinateSalary) * 100.0;
-            double salaryDiff = managerSalary - avgSubordinateSalary;
             double minShouldEarn = avgSubordinateSalary * 1.2;
             double maxShouldEarn = avgSubordinateSalary * 1.5;
 
@@ -153,10 +148,6 @@ public class ManagerSalaryAnalyzer {
                                 " (earns " + Math.round(managerSalary) +
                                 ", should earn at least " + Math.round(minShouldEarn) + ")" +
                                 ", average subordinate salary: " + Math.round(avgSubordinateSalary)
-//                        + ", lowest subordinate: " + Math.round(minSalary) + " (" + minId + ")" +
-//                        ", highest subordinate: " + Math.round(maxSalary) + " (" + maxId + ")" +
-//                        ", difference: " + Math.round(salaryDiff) +
-//                        ", percent difference: " + Math.round(percentDiff) + "%"
                 );
             } else if (managerSalary > maxShouldEarn) {
                 double diff = managerSalary - maxShouldEarn;
@@ -166,10 +157,6 @@ public class ManagerSalaryAnalyzer {
                                 " (earns " + Math.round(managerSalary) +
                                 ", should earn no more than " + Math.round(maxShouldEarn) + ")" +
                                 ", average subordinate salary: " + Math.round(avgSubordinateSalary)
-//                        + ", lowest subordinate: " + Math.round(minSalary) + " (" + minId + ")" +
-//                        ", highest subordinate: " + Math.round(maxSalary) + " (" + maxId + ")" +
-//                        ", difference: " + Math.round(salaryDiff) +
-//                        ", percent difference: " + Math.round(percentDiff) + "%"
                 );
             }
         }
