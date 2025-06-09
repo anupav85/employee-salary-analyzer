@@ -33,7 +33,7 @@ Find the following:
 
 1. Clone the repository and run maven goal to package:
    ```bash
-   git clone <REPOSITORY_URL>
+   git clone https://github.com/anupav85/employee-salary-analyzer.git
    ```
    ```bash
    mvn package
