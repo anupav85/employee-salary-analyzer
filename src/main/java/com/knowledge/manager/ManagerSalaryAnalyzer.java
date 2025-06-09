@@ -16,8 +16,7 @@ public class ManagerSalaryAnalyzer {
         if (employees == null || employees.isEmpty()) return;
 
         if (!isCsvSizeValid(employees, MAX_CSV_SIZE)) {
-            System.out.println("Input CSV contains " + employees.size() + " entries.");
-            System.out.println("Please split the file so that each part contains no more than " + MAX_CSV_SIZE + " entries.");
+            System.out.println("Input CSV contains " + employees.size() + " entries. Please split the file so that each part contains no more than" + MAX_CSV_SIZE + " entries.");
             return;
         }
 
@@ -54,8 +53,8 @@ public class ManagerSalaryAnalyzer {
                     if (employees.size() > MAX_CSV_SIZE) break;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Error reading employees from CSV: " + e.getMessage());
         }
         return employees;
     }
@@ -86,7 +85,7 @@ public class ManagerSalaryAnalyzer {
      * and provides salary analysis for each manager.
      *
      * @param managerToReports Map of manager IDs to their direct reports.
-     * @param idToEmployee Map of employee IDs to Employee objects.
+     * @param idToEmployee     Map of employee IDs to Employee objects.
      * @return List of analysis results as strings.
      */
 
@@ -95,11 +94,10 @@ public class ManagerSalaryAnalyzer {
             Map<Integer, Employee> idToEmployee) {
 
         List<String> results = new ArrayList<>();
-        Set<Integer> subordinateIds = new HashSet<>();
-        Set<Integer> employeesWithMultipleManagers = new HashSet<>();
+
 
         // 1. Detect employees with multiple managers (if data allows)
-        hasMultipleManagers(managerToReports, subordinateIds, employeesWithMultipleManagers, results);
+        hasMultipleManagers(managerToReports, results);
 
         // 2. Detect cycles (circular reporting)
         cycleDetected(idToEmployee, results);
@@ -143,20 +141,20 @@ public class ManagerSalaryAnalyzer {
             if (managerSalary < minShouldEarn) {
                 double diff = minShouldEarn - managerSalary;
                 results.add("ManagerId: " + managerId +
-                                " (" + manager.firstName + " " + manager.lastName + ")" +
-                                " is UNDERPAID by " + Math.round(diff) +
-                                " (earns " + Math.round(managerSalary) +
-                                ", should earn at least " + Math.round(minShouldEarn) + ")" +
-                                ", average subordinate salary: " + Math.round(avgSubordinateSalary)
+                        " (" + manager.firstName + " " + manager.lastName + ")" +
+                        " is UNDERPAID by " + Math.round(diff) +
+                        " (earns " + Math.round(managerSalary) +
+                        ", should earn at least " + Math.round(minShouldEarn) + ")" +
+                        ", average subordinate salary: " + Math.round(avgSubordinateSalary)
                 );
             } else if (managerSalary > maxShouldEarn) {
                 double diff = managerSalary - maxShouldEarn;
                 results.add("ManagerId: " + managerId +
-                                " (" + manager.firstName + " " + manager.lastName + ")" +
-                                " is OVERPAID by " + Math.round(diff) +
-                                " (earns " + Math.round(managerSalary) +
-                                ", should earn no more than " + Math.round(maxShouldEarn) + ")" +
-                                ", average subordinate salary: " + Math.round(avgSubordinateSalary)
+                        " (" + manager.firstName + " " + manager.lastName + ")" +
+                        " is OVERPAID by " + Math.round(diff) +
+                        " (earns " + Math.round(managerSalary) +
+                        ", should earn no more than " + Math.round(maxShouldEarn) + ")" +
+                        ", average subordinate salary: " + Math.round(avgSubordinateSalary)
                 );
             }
         }
@@ -191,7 +189,9 @@ public class ManagerSalaryAnalyzer {
         return !results.isEmpty();
     }
 
-    private static boolean hasMultipleManagers(Map<Integer, List<Employee>> managerToReports, Set<Integer> subordinateIds, Set<Integer> employeesWithMultipleManagers, List<String> results) {
+    private static boolean hasMultipleManagers(Map<Integer, List<Employee>> managerToReports, List<String> results) {
+        Set<Integer> subordinateIds = new HashSet<>();
+        Set<Integer> employeesWithMultipleManagers = new HashSet<>();
         for (List<Employee> reports : managerToReports.values()) {
             for (Employee e : reports) {
                 if (!subordinateIds.add(e.id)) {

@@ -78,12 +78,12 @@ The application will output the following:
 
 ## Assumptions & Usecases covered
 
-- The CSV file is well-formed and contains valid data.
+- The CSV file is well-formed and contains valid data. It supports upto 1000 employee entries.
 - The salary values are numeric and positive.
 - The manager_id for the CEO is null/empty.
 - The application does not enforce a single CEO, results will include messages with WARNING if such structures are
   detected.
-- Crcular reporting structures, results will include messages with WARNING if such structures are detected.
+- Circular reporting structures, results will include messages with WARNING if such structures are detected.
 - Employees without managers, results will include messages with WARNING if such structures are detected.
 - Employees with multiple managers, results will include messages with WARNING if such
   structures are detected.
